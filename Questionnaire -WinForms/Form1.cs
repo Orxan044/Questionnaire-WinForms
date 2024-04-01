@@ -1,7 +1,6 @@
+using System.Text.Json;
 using System.Text.RegularExpressions;
 using Questionnaire__WinForms.Models;
-using Newtonsoft.Json;
-
 
 namespace Questionnaire__WinForms;
 
@@ -88,7 +87,6 @@ public partial class Questionnaire : Form
         }
 
     }
-
     private void listBoxUsers_SelectedIndexChanged(object sender, EventArgs e)
     {
         if (listBoxUsers.SelectedIndex != -1)
@@ -108,18 +106,21 @@ public partial class Questionnaire : Form
     private void btnSave_Click(object sender, EventArgs e)
     {
         string fileName = $"{txtBoxFileName.Text}.json";
-        if (!File.Exists(fileName))
+        if (File.Exists(fileName))
         {
-            var userJson = System.Text.Json.JsonSerializer.Serialize(users);
-            File.WriteAllText(fileName, userJson);
+            users.Clear();
+            foreach (var item in listBoxUsers.Items) 
+                users.Add((User)item);    
+            var jsonSerilaze = JsonSerializer.Serialize(users);
+            File.WriteAllText(fileName, jsonSerilaze);
         }
         else
         {
-            var json = File.ReadAllText(fileName);
-            List<User> userRead = JsonConvert.DeserializeObject<List<User>>(json) ?? new();
-            var userJson = System.Text.Json.JsonSerializer.Serialize(userRead);
-            File.WriteAllText(fileName, userJson);
+            var jsonSerilaze = JsonSerializer.Serialize(users);
+            File.WriteAllText(fileName, jsonSerilaze);
         }
+        btnClearListBox_Click(sender, e);
+        btnCleartxtBoxes_Click(sender, e);
         MessageBox.Show($"User Save in {fileName}", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
     }
 
@@ -129,7 +130,7 @@ public partial class Questionnaire : Form
         if (File.Exists(fileName))
         {
             var json = File.ReadAllText(fileName);
-            List<User> users = JsonConvert.DeserializeObject<List<User>>(json) ?? new();
+            List<User> users = JsonSerializer.Deserialize<List<User>>(json) ?? new();
             listBoxUsers.Items.Clear();
             foreach (var item in users) listBoxUsers.Items.Add(item);
 
@@ -142,6 +143,7 @@ public partial class Questionnaire : Form
     private void btnClearListBox_Click(object sender, EventArgs e)
     {
         listBoxUsers.Items.Clear();
+        txtBoxFileName.Text = null;
     }
 
     private void btnCleartxtBoxes_Click(object sender, EventArgs e)

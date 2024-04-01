@@ -104,10 +104,10 @@
             // txtBoxEmail
             // 
             txtBoxEmail.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
-            txtBoxEmail.Location = new Point(130, 130);
+            txtBoxEmail.Location = new Point(130, 131);
             txtBoxEmail.Multiline = true;
             txtBoxEmail.Name = "txtBoxEmail";
-            txtBoxEmail.Size = new Size(271, 27);
+            txtBoxEmail.Size = new Size(271, 31);
             txtBoxEmail.TabIndex = 2;
             txtBoxEmail.TextChanged += txtBoxEmail_TextChanged;
             // 
@@ -126,10 +126,10 @@
             // txtBoxPhone
             // 
             txtBoxPhone.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
-            txtBoxPhone.Location = new Point(130, 195);
+            txtBoxPhone.Location = new Point(130, 196);
             txtBoxPhone.Multiline = true;
             txtBoxPhone.Name = "txtBoxPhone";
-            txtBoxPhone.Size = new Size(271, 27);
+            txtBoxPhone.Size = new Size(271, 31);
             txtBoxPhone.TabIndex = 3;
             txtBoxPhone.TextChanged += txtBoxPhone_TextChanged;
             // 
@@ -147,7 +147,7 @@
             // 
             // dateTimeBrithday
             // 
-            dateTimeBrithday.Location = new Point(130, 256);
+            dateTimeBrithday.Location = new Point(130, 257);
             dateTimeBrithday.MaxDate = new DateTime(2024, 3, 25, 23, 59, 59, 0);
             dateTimeBrithday.Name = "dateTimeBrithday";
             dateTimeBrithday.Size = new Size(271, 27);
@@ -243,6 +243,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImage = Properties.Resources.BackGorund_blue;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(798, 374);
             Controls.Add(btnCleartxtBoxes);
